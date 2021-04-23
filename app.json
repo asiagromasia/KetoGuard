@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/ketoicon.png",
     "splash": {
-      "image": "./assets/splashk.png",
+      "image": "./assets/splashK.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
