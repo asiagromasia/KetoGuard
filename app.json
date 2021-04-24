@@ -4,7 +4,7 @@
     "slug": "KetoGuard",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/ketoicon.png",
+    "icon": "./assets/ketoIcon.png",
     "splash": {
       "image": "./assets/splashK.png",
       "resizeMode": "contain",
@@ -21,7 +21,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/ketoicon.png",
+        "foregroundImage": "./assets/ketoIcon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
