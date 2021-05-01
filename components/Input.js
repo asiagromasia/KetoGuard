@@ -1,12 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Header from './components/Header';
-import Welcome from './components/Welcome';
+import Header from './Header';
 
 
-export default function App() {
+export default function Input() {
   return (
-    <Welcome />
+    <Header />
   );
 }
