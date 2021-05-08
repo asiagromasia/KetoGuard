@@ -15,7 +15,7 @@ const opacities = {
 };
 const sizeText = {
   0: 40,
-  1: 15,
+  1: 20,
   2: 10,
 };
 
@@ -26,18 +26,18 @@ const Item = React.memo(
         style={{
           alignItems: 'center',
           justifyContent: 'center',
-          height: 70,
+          //height: 70,
           opacity: isLastIndex ? 0 : 1,
           backgroundColor: selected ? '#D9F5ED' : '#D9F5ED',
           borderColor: selected ? '#ABC9AF' : 'transparent',
+          height: selected ? 90 : 'auto',
           //width: vertical ? 150 : 'auto',
-          width: selected ? 150 : 80,
-          marginTop: 10,
+          width: selected ? 150 : 75,
           marginBottom: isLastIndex ? -25 : 10,
           paddingTop: 10,
           paddingBottom: 10,
-          paddingLeft: 20,
-          paddingRight: 20,
+          paddingLeft: selected ? 15 : 'auto',
+          paddingRight: selected ? 15 : 'auto',
           borderWidth: 4,
           borderRadius: 50
           
@@ -134,37 +134,37 @@ export default function CurrentWeight2() {
           renderItem={(option) => ItemToRender(option, selected2, true, numberArray2.length - 1)}
           magnet
         />
-        
     </View>
-    
     </>
   );
 }
 const styles = StyleSheet.create({
   container: {
-    height: "30%",
+    height: "23%",
     backgroundColor: '#F5FCFF',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 30
+    paddingTop: 30,
+    marginTop:15
+    
   },
   wlcm: {
     color: '#888',
     fontSize: 25,
     fontWeight: '500',
     marginHorizontal: 15,
-    marginBottom: 10
+    marginBottom: 25
   },
   sel: {
     color: '#888',
     fontSize: 20,
     fontWeight: '500',
     marginHorizontal: 15,
-    marginBottom: 10
+    marginBottom: 1
   },
   wrapperHorizontal: {
-    height: 100,
+    height: 120,
     justifyContent: 'center',
     alignItems: 'center',
     margin: 'auto',
