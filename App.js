@@ -4,11 +4,11 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import SmoothPicker from 'react-native-smooth-picker';
 import Header from './components/Header';
 import Input from './components/Input';
-import Sample from './components/Sample';
+import SmoothPCla from './components/SmoothPCla';
 import Welcome from './components/Welcome';
-import SmoothP from './components/SmoothP';
+import SmoothPNrFun from './components/SmoothPNrFun';
 import SmP from './components/SmP';
-import G from './components/G';
+import CurrentWeight1 from './components/CurrentWeight1';
 
 
 export default function App() {
