@@ -17,13 +17,21 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSRemindersUsageDescription": "This app uses reminders about upcoming weight assessment"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/ketoIcon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "permissions":[
+        "READ_CALENDAR",
+        "WRITE_CALENDAR"
+
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
