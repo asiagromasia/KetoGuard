@@ -84,7 +84,7 @@ export default function CurrentWeight2() {
   function handleChange2(index) {
     setSelected2(index >= numberArray2.length - 1 ? numberArray2.length - 2 : index);
   }
-
+//i believe if you change 0 to 150 counter will start with 150
   const [selected, setSelected] = React.useState(0);
   const [selected2, setSelected2] = React.useState(0);
   console.log('ye')

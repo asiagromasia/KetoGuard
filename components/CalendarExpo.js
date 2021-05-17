@@ -2,16 +2,19 @@ import React, { useEffect } from 'react';
 import { StyleSheet, View, Text, Button, Platform } from 'react-native';
 import * as Calendar from 'expo-calendar';
 import * as Permissions from 'expo-permissions';
+import * as Localization from 'expo-localization';
 
 
-// const event = {
-//     title: 'test event',
-//     startDate: testStartDate,
-//     endDate: testEndDate,
-//     location: 'Test location',
-//     timeZone: Localization.timezone,
-//     endTimeZone: Localization.timezone,
-//   }
+const details = {
+    title: 'test event',
+    // startDate: Calendar.DayOfTheWeek.Monday,
+    // endDate: Calendar.DayOfTheWeek.Thursday,
+    startDate: '2021-05-17T15:00.00.000Z',
+    endDate: '2021-05-18T15:00.00.000Z',  
+    location: 'Test location',
+    timeZone: Localization.timezone,
+    endTimeZone: Localization.timezone,
+  }
 
 //Gets an array of calendar objects with details about the different calendars 
 //stored on the device.
@@ -20,6 +23,7 @@ async function getDefaultCalendarSource() {
   // may use for reminders: Calendar.EntityTypes.REMINDER (for the Reminders app)
   const defaultCalendars = calendars.filter(each => each.source.name === 'Default');
   return defaultCalendars[0].source;
+  
 }
 // const getDefaultCalendarSource = async () => {
 //     const defaultCalendar = await Calendar.getDefaultCalendarAsync();
@@ -42,6 +46,10 @@ async function createCalendar() {
     accessLevel: Calendar.CalendarAccessLevel.OWNER,
     isVisible: true
   });
+  const newEvent = await Calendar.createEventAsync(newCalendarID, details);
+
+  console.log(`Your new calendar ID before event is: ${newCalendarID}`);
+  console.log(`Your new event is: ${newEvent}`);
   console.log(`Your new calendar ID is: ${newCalendarID}`);
 }
 
