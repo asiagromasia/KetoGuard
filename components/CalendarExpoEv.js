@@ -7,17 +7,20 @@ import * as Localization from 'expo-localization';
 //details about event
 const details = {
     title: 'test event',
-    // startDate: Calendar.DayOfTheWeek.Monday,
+    // startDate: '2021-05-26T16:00.00.000Z',
     // endDate: Calendar.DayOfTheWeek.Thursday,
-    startDate: '2021-05-26T15:00.00.000Z',
-    endDate: '2021-05-27T15:00.00.000Z',  
+    startDate: new Date(),
+    endDate: new Date(),  
     location: 'Test location',
-    // recurrenceRule: {
-    //     frequency: Calendar.Frequency.WEEKLY,
-    //     "interval": 1,
-    //   },
+    accessLevel: Calendar.EventAccessLevel.PRIVATE,
+    recurrenceRule: {
+        // daysOfTheWeek:2,
+        frequency: Calendar.Frequency.WEEKLY,
+        "interval": 1,
+    },
     timeZone: Localization.timezone,
-    endTimeZone: Localization.timezone,
+    endTimeZone: Localization.timezone
+    
   }
 
   
@@ -36,7 +39,6 @@ async function getDefaultCalendarId() {
     
     const defaultCalendars = calendars.filter(each => each.source.name === 'Default');
     return defaultCalendars[0].id;
-    
   }
 
 
@@ -64,7 +66,8 @@ async function createCalendar() {
     isLocalAccount: true,
     isSynced: true,
     accessLevel: Calendar.CalendarAccessLevel.OWNER,
-    isVisible: true
+    isVisible: true,
+    allowsModifications: true
   });
   
     // creates new event- promise
@@ -77,21 +80,9 @@ async function createCalendar() {
                     console.log('failure',error);
                     });
 
-    // creates event directly on the defaulted calendar
-    try {
-    let result = await Calendar.createEventAsync(getDefaultCalendarId(), {
-        title: 'my new event',
-        startDate: new Date(),
-        endDate: new Date(),
-      });
-    console.log(result);
-    Alert.alert('Created event #' + result);
-    } catch (e) {
-        console.log({ e });
-    }
+   
   console.log(`Your new calendar ID before event is: ${newCalendarID}`);
-  console.log(`Your new event is: ${newEvent}`);
-  console.log(`Your new calendar ID is: ${newCalendarID}`);
+  
 }
 
 
