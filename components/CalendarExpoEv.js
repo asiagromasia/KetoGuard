@@ -9,8 +9,8 @@ const details = {
     title: 'test event',
     // startDate: Calendar.DayOfTheWeek.Monday,
     // endDate: Calendar.DayOfTheWeek.Thursday,
-    startDate: '2021-05-20T15:00.00.000Z',
-    endDate: '2021-05-21T15:00.00.000Z',  
+    startDate: '2021-05-26T15:00.00.000Z',
+    endDate: '2021-05-27T15:00.00.000Z',  
     location: 'Test location',
     // recurrenceRule: {
     //     frequency: Calendar.Frequency.WEEKLY,
@@ -30,6 +30,7 @@ async function getDefaultCalendarSource() {
   return defaultCalendars[0].source;
   
 }
+//getting just defaulted calendar id needed for creating event
 async function getDefaultCalendarId() {
     const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
     
@@ -38,11 +39,14 @@ async function getDefaultCalendarId() {
     
   }
 
+
+// gives only info about deafaulted calendar
 // const getDefaultCalendarSource = async () => {
 //     const defaultCalendar = await Calendar.getDefaultCalendarAsync();
 //     return defaultCalendar.source;
 // }
 
+//creates new calendar and adds new event in it - if visible it shows events in default calendar 
 async function createCalendar() {
   const defaultCalendarSource =
     Platform.OS === 'ios'
@@ -62,14 +66,8 @@ async function createCalendar() {
     accessLevel: Calendar.CalendarAccessLevel.OWNER,
     isVisible: true
   });
-  //const newEvent = await Calendar.createEventAsync(newCalendarID, details);
-//   const newEvent = await Calendar.createEventAsync(newCalendarID, details).then((eventId)=>{    
-//     console.log(eventId)
-//     alert(eventId)
-//     })
-
-// const newEvent = 
-// Platform.OS === 'ios' ? await Calendar.createEventAsync(newCalendarID, details) : {alert(eventId)};
+  
+    // creates new event- promise
     const newEvent = await Calendar.createEventAsync(newCalendarID, details)
                 .then( event => {
                     console.log('success',event);
@@ -92,38 +90,27 @@ async function createCalendar() {
         console.log({ e });
     }
   console.log(`Your new calendar ID before event is: ${newCalendarID}`);
-  //console.log(`Your new event is: ${eventId}`);
   console.log(`Your new event is: ${newEvent}`);
   console.log(`Your new calendar ID is: ${newCalendarID}`);
 }
-let calendarIdDel = '20';
-//to delete calendar
-//export const deleteCalendarId = async () => {
-    //const calendarId = await SecureStore.getItemAsync(nameCalendarStore);
-    
-    // if (calendarIdDel) {
-    //   await Calendar.deleteCalendarAsync(calendarIdDel);
-    //   console.log('deleted')
-    //   //await SecureStore.deleteItemAsync(nameCalendarStore);
-    // }
-  //};
 
 
-export default function CalendarExpo() {
+export default function CalendarExpoEv() {
     useEffect(() => {
       (async () => {
-        //const { status } = await Calendar.requestCalendarPermissionsAsync();
-        const { status } = await Permissions.askAsync(Permissions.CALENDAR);
+        const { status } = await Calendar.requestCalendarPermissionsAsync();
+       // const { status } = await Permissions.askAsync(Permissions.CALENDAR);
         if (status === 'granted') {
-          const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
-          
-        //   if (calendarIdDel===20) {
-        //     await Calendar.deleteCalendarAsync(calendarIdDel);
-        //     console.log('deleted2')}
-            
-          console.log('Here are all your calendars:');
-          console.log({ calendars });
-          ///deleteCalendarId();
+        const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
+          console.log(calendars);
+          let result = await Calendar.createEventAsync(calendars[0].id, {
+            title: 'my new event',
+            startDate: new Date(),
+            endDate: new Date(),
+          });
+          console.log(result);
+          Alert.alert('Created event #' + result);
+               
         }
       })();
     }, []);

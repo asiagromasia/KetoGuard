@@ -30,7 +30,6 @@
       "permissions":[
         "READ_CALENDAR",
         "WRITE_CALENDAR"
-
       ]
     },
     "web": {
