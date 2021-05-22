@@ -86,7 +86,7 @@ async function createCalendar() {
 }
 
 
-export default function CalendarExpoEv() {
+export default function CalendarExpoEv({ navigation }) {
     useEffect(() => {
       (async () => {
         const { status } = await Calendar.requestCalendarPermissionsAsync();
@@ -115,7 +115,6 @@ export default function CalendarExpoEv() {
         </View>
         <View style={styles.container}>
             <Text style={styles.wlcm}>Add it to your calendar</Text>
-
             <Button title="Create a new calendar" onPress={createCalendar} color="#85944d" />
         </View>
       </>

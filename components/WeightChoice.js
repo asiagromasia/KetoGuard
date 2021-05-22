@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, useWindowDimensions } from 'react-native';
+import { Text, View, StyleSheet, Button, useWindowDimensions } from 'react-native';
 import Constants from 'expo-constants';
 
 
@@ -73,7 +73,7 @@ const ItemToRender = ({ item, index }, indexSelected, vertical, lastIndex) => {
   );
 };
 
-export default function CurrentWeight2() {
+export default function WeightChoice({navigation}) {
     const numberArray = new Array(170).fill(100).map((x, i) => x + (i + 1));
     const numberArray2 = new Array(170).fill(100).map((x, i) => x + (i + 1));
 
@@ -84,14 +84,16 @@ export default function CurrentWeight2() {
   function handleChange2(index) {
     setSelected2(index >= numberArray2.length - 1 ? numberArray2.length - 2 : index);
   }
-//i believe if you change 0 to 150 counter will start with 150
-  const [selected, setSelected] = React.useState(0);
-  const [selected2, setSelected2] = React.useState(0);
-  console.log('ye')
+//this sets the counter on the page opening
+  const [selected, setSelected] = React.useState(50);
+  const [selected2, setSelected2] = React.useState(50);
   console.log(numberArray[0])
   console.log(numberArray.length)
   console.log('a2 1st ele='+numberArray2[0])
   console.log('a2 len ='+numberArray2.length)
+  //console.log('item='+{item})
+  console.log('selected2='+selected2)
+
 
 
   return (
@@ -135,6 +137,11 @@ export default function CurrentWeight2() {
           magnet
         />
     </View>
+    <View style={styles.button}>
+        <Button title="Submit" onPress={() => navigation.navigate('Calendar', {})} />
+    </View>
+    
+
     </>
   );
 }
@@ -173,5 +180,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
     width: 500
         
+  },
+  button: {
+    alignItems:'center',
+    justifyContent: 'space-around',
+    backgroundColor: '#85944d',
+    marginHorizontal:150,
+    marginBottom:120,
+    alignItems: 'center',
+    padding: 20,
+    borderRadius: 5
   }
 })

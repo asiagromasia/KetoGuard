@@ -8,11 +8,11 @@ import SmoothPNrFun from './SmoothPNrFun';
 import WeightChoice from './WeightChoice';
 
 
-export default function Input() {
+export default function Input({navigation}) {
   return (
     <>
-        <Header />
-        <WeightChoice />
+        
+        <WeightChoice navigation={navigation} />
         
     </>
   );

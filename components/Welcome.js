@@ -1,28 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, Button, View } from 'react-native';
 import Header from './Header';
 import Input from './Input';
-//import { useNavigation } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 
-export default function Welcome() {
+
+export default function Welcome({ navigation }) {
     return (
       <>
-      <Header />
       <View style={styles.welcome}>
         <Text style={styles.wlcm}>Welcome to Keto Guard!</Text>
       </View>
       <View style={styles.container}>
-        <Text style={styles.instructions}>After getting the weight info you will have an option to either create a new calendar or add your weekly goals to your current calendar.</Text>
+        <Text style={styles.instructions}>After giving the weight info you will have an option to either create a new calendar or add your weekly goals to your current calendar.</Text>
       <StatusBar style="auto" />
       </View>
       <View style={styles.lts}>
         <Text style={styles.ltsl}>So let's start!</Text>
       </View>
       <View>
-        <TouchableOpacity style={styles.button} onPress={() => alert('Input!')}>
-            <Text style={styles.text}>Go</Text>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Input')}>
+                <Text style={styles.text}>Go</Text>
         </TouchableOpacity>
       </View>
       </>
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
   welcome: {
    // flex: 1,
    height: "35%",
-    backgroundColor: '#fff',
+    backgroundColor: '#F5FCFF',
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: '#F5FCFF',
     alignItems: 'center',
     justifyContent: 'center',
     //height: "10%",
@@ -60,14 +61,14 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   lts: {
-    backgroundColor: '#fff',
+    backgroundColor: '#F5FCFF',
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: 50,
     marginBottom:10
   },
   ltsl: {
-    backgroundColor: '#fff',
+    backgroundColor: '#F5FCFF',
     color: '#4d4f4e',
     fontSize: 15,
     fontWeight: '500',
@@ -90,3 +91,11 @@ const styles = StyleSheet.create({
 	fontWeight: 'bold'
 	}
 });
+
+
+
+
+    //     <Button
+    //     title="Go"
+    //     onPress={() => navigation.navigate('Input')}
+    //   />
