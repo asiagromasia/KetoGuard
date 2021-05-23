@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, Button, View } from 'react-native';
-import Header from './Header';
+//import Header from './garbage/Header';
 import Input from './Input';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -15,7 +15,7 @@ export default function Welcome({ navigation }) {
         <Text style={styles.wlcm}>Welcome to Keto Guard!</Text>
       </View>
       <View style={styles.container}>
-        <Text style={styles.instructions}>After giving the weight info you will have an option to either create a new calendar or add your weekly goals to your current calendar.</Text>
+        <Text style={styles.instructions}>After adding the weight info you will have an option to create a new calendar or add your weekly goals to your current calendar.</Text>
       <StatusBar style="auto" />
       </View>
       <View style={styles.lts}>
@@ -33,10 +33,12 @@ export default function Welcome({ navigation }) {
 const styles = StyleSheet.create({
   welcome: {
    // flex: 1,
-   height: "35%",
+   height: "25%",
     backgroundColor: '#F5FCFF',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginHorizontal:50,
+    marginTop:30
   },
   wlcm: {
     color: '#888',
@@ -50,7 +52,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     //height: "10%",
+    padding:10,
     marginHorizontal: 50,
+    marginTop:20,
     marginBottom: 60
   },
   instructions: {
@@ -80,10 +84,11 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#85944d',
     marginHorizontal:150,
+    marginTop: 20,
     marginBottom:120,
     alignItems: 'center',
-    padding: 20,
-    borderRadius: 5
+    padding: 15,
+    borderRadius: 25
 	},
   text: {
     fontSize: 25,

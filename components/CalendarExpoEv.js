@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, Text, Button, Platform, Alert } from 'react-native';
+import { StyleSheet, View, Text, Button, Platform, Alert,TouchableOpacity } from 'react-native';
 import * as Calendar from 'expo-calendar';
 import * as Permissions from 'expo-permissions';
 import * as Localization from 'expo-localization';
@@ -86,36 +86,51 @@ async function createCalendar() {
 }
 
 
-export default function CalendarExpoEv({ navigation }) {
+export default function CalendarExpoEv({ route, navigation }) {
+  const { current } = route.params;
+  const { goal } = route.params;
+
     useEffect(() => {
       (async () => {
-        const { status } = await Calendar.requestCalendarPermissionsAsync();
-       // const { status } = await Permissions.askAsync(Permissions.CALENDAR);
-        if (status === 'granted') {
-        const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
-          console.log(calendars);
-          let result = await Calendar.createEventAsync(calendars[0].id, {
-            title: 'my new event',
-            startDate: new Date(),
-            endDate: new Date(),
-          });
-          console.log(result);
-          Alert.alert('Created event #' + result);
-               
+        try {
+          const { status } = await Calendar.requestCalendarPermissionsAsync();
+        // const { status } = await Permissions.askAsync(Permissions.CALENDAR);
+          if (status === 'granted') {
+            const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
+              console.log(calendars);
+              let result = await Calendar.createEventAsync(calendars[0].id, {
+                title: 'my new event',
+                startDate: new Date(),
+                endDate: new Date(),
+              });
+              console.log(result);
+              Alert.alert('Created event #' + result);      
+          }
+        } catch (error) {
+          console.error('Problem', error)
         }
       })();
     }, []);
 
 
-  
+    console.log(current);
+    console.log(goal);
     return (
         <>
         <View style={styles.container}>
         <Text style={styles.wlcm}>Here is your plan:</Text>
+        <Text>current weight: {current} </Text>
+        <Text>goal weight: {goal}</Text>
         </View>
         <View style={styles.container}>
-            <Text style={styles.wlcm}>Add it to your calendar</Text>
-            <Button title="Create a new calendar" onPress={createCalendar} color="#85944d" />
+            <Text style={styles.wlcm}>Add it to your calendar:</Text>
+            
+        </View>
+        
+        <View style={styles.b}>
+          <TouchableOpacity style={styles.button} onPress={createCalendar}>
+                  <Text style={styles.text}>Create a new calendar</Text>
+          </TouchableOpacity>
         </View>
       </>
     );
@@ -141,4 +156,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
   },
+  button: {
+    alignItems:'center',
+    justifyContent: 'space-around',
+    backgroundColor: '#85944d',
+    marginHorizontal:60,
+    //marginBottom:220,
+    marginTop: 15,
+    alignItems: 'center',
+    padding: 13,
+    borderRadius: 25
+  },
+  b:{
+    // alignItems: 'flex-end',
+     marginBottom:40
+   },
+   text: {
+    fontSize: 22,
+    color: '#fff',
+	  fontWeight: 'bold'
+	}
 });
+
+//<Button title="Create a new calendar" onPress={createCalendar} color="#85944d" />

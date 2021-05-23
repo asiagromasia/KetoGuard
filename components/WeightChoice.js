@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Button, useWindowDimensions } from 'react-native';
+import { Text, View, StyleSheet,TouchableOpacity, Button, useWindowDimensions, Alert } from 'react-native';
 import Constants from 'expo-constants';
 
 
@@ -80,9 +80,11 @@ export default function WeightChoice({navigation}) {
 
   function handleChange(index) {
     setSelected(index >= numberArray.length - 1 ? numberArray.length - 2 : index);
+    // console.log('Your selection is' + numberArray[selected])
   }
   function handleChange2(index) {
     setSelected2(index >= numberArray2.length - 1 ? numberArray2.length - 2 : index);
+    // console.log('Your selection2 is' + numberArray2[selected2])
   }
 //this sets the counter on the page opening
   const [selected, setSelected] = React.useState(50);
@@ -93,6 +95,9 @@ export default function WeightChoice({navigation}) {
   console.log('a2 len ='+numberArray2.length)
   //console.log('item='+{item})
   console.log('selected2='+selected2)
+  //console.log('index2='+index)
+  //console.log('indexselected2='+indexSelected)
+//console.log('Your selection is' + numberArray[selected])
 
 
 
@@ -137,17 +142,25 @@ export default function WeightChoice({navigation}) {
           magnet
         />
     </View>
-    <View style={styles.button}>
-        <Button title="Submit" onPress={() => navigation.navigate('Calendar', {})} />
-    </View>
     
-
+    <View style={styles.b}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Calendar', {current:numberArray[selected],goal:numberArray2[selected2]})}>
+                <Text style={styles.text}>Submit</Text>
+        </TouchableOpacity>
+    </View>
+    <View style={styles.b}>
+      <Text> </Text>
+    </View>
     </>
   );
 }
 const styles = StyleSheet.create({
+  b:{
+   // alignItems: 'flex-end',
+    marginBottom:40
+  },
   container: {
-    height: "23%",
+    height: "22%",
     backgroundColor: '#F5FCFF',
     flexDirection: 'column',
     alignItems: 'center',
@@ -184,11 +197,21 @@ const styles = StyleSheet.create({
   button: {
     alignItems:'center',
     justifyContent: 'space-around',
-    backgroundColor: '#85944d',
+    backgroundColor: '#f5ce42',
     marginHorizontal:150,
-    marginBottom:120,
+    //marginBottom:220,
+    marginTop: 15,
     alignItems: 'center',
-    padding: 20,
-    borderRadius: 5
-  }
+    padding: 13,
+    borderRadius: 25
+  },
+  text: {
+    fontSize: 22,
+    color: '#fff',
+	fontWeight: 'bold'
+	}
 })
+
+{/* <View style={styles.button}>
+        <Button title="Submit" onPress={() => navigation.navigate('Calendar')} />
+    </View> */}
