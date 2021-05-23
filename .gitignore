@@ -1,5 +1,10 @@
 node_modules/
 .expo/
+
+
+garbage
+garbage/
+
 npm-debug.*
 *.jks
 *.p8
@@ -11,3 +16,5 @@ web-build/
 
 # macOS
 .DS_Store
+AssetExample.js 
+garbage/AssetExample.js
