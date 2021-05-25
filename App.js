@@ -40,8 +40,8 @@ export default function App() {
         <Stack.Screen name="Calendar" component={CalendarExpoEv} options={{ title: 'Plan' }} />
       </Stack.Navigator>
 
-    </NavigationContainer>
-   
+    </NavigationContainer> 
     
   );
 }
+   
