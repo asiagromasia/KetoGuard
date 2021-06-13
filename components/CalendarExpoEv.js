@@ -6,17 +6,17 @@ import * as Localization from 'expo-localization';
 import { event } from 'react-native-reanimated';
 import Plan from './Plan';
 
-let finishDate = '2021-08-26T16:00.00.000Z';
+const finishDate = '2021-08-26T16:00.00.000Z';
 
 //details about event
 const details = {
-    title: 'test event',
+    title: 'Keto check',
     // startDate: '2021-05-26T16:00.00.000Z',
     // endDate: Calendar.DayOfTheWeek.Thursday,
     startDate: new Date(),
     endDate: new Date(),  
     notes:'today your weight should be:',
-    location: 'Test location',
+    location: 'location',
     accessLevel: Calendar.EventAccessLevel.PRIVATE,
     recurrenceRule: {
         // daysOfTheWeek:2,
@@ -35,7 +35,7 @@ const evR = {
   frequency: Calendar.Frequency.WEEKLY,
   interval: 1,
   ///endDate: finishDate(),
-  //occurrence: occurrenceNb,
+  
   occurrence: 5
 }
   
@@ -127,15 +127,13 @@ async function createCalendar() {
 export default function CalendarExpoEv({ route, navigation }) {
   const { current } = route.params;
   const { goal } = route.params;
-  //a = current - goal;
   const occurrenceNb = current - goal;
-  //const ev = {};
 
     useEffect(() => {
       (async () => {
         try {
           const { status } = await Calendar.requestCalendarPermissionsAsync();
-        // const { status } = await Permissions.askAsync(Permissions.CALENDAR); not good anymore
+        // const { status } = await Permissions.askAsync(Permissions.CALENDAR); outdated
           if (status === 'granted') {
             const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
               //console.log(calendars);
@@ -143,6 +141,12 @@ export default function CalendarExpoEv({ route, navigation }) {
                 title: 'my new event from effect',
                 startDate: new Date(),
                 endDate: new Date(),
+                notes:'today your weight should be:',
+                recurrenceRule: {
+                  frequency: Calendar.Frequency.WEEKLY,
+                  interval: 1,
+                  occurrence: occurrenceNb, //works in Android
+              },
               });
               const ev = await Calendar.getEventAsync(result,evR);
               console.log(ev)
@@ -166,7 +170,7 @@ export default function CalendarExpoEv({ route, navigation }) {
         <View style={styles.container}>
           <Text style={styles.wlcm}>Current weight: {current} lbn</Text>
           <Text style={styles.wlcm}>Goal weight: {goal} lbn </Text>        
-          <Text style={styles.wlcm}>You need {occurrenceNb} weeks </Text>
+          <Text style={styles.wlcm2}>You need {occurrenceNb} weeks </Text>
           <Text style={styles.wlcm}>Here is your plan:</Text>
         </View>
         <View style={{flex: 1}}>
@@ -202,6 +206,13 @@ const styles = StyleSheet.create({
   wlcm: {
     color: '#888',
     fontSize: 25,
+    fontWeight: '500',
+    marginHorizontal: 15,
+    marginBottom: 10
+  },
+  wlcm2: {
+    color: '#52504d',
+    fontSize: 27,
     fontWeight: '500',
     marginHorizontal: 15,
     marginBottom: 10
