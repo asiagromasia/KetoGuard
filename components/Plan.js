@@ -16,31 +16,31 @@ const today = () => {
   const date = new Date();
   return date.toISOString().split('T')[0];
 }
-const currentWei= ()=>{
-  return 150;
-}
-export default function Plan({occ}) {
- const numItems = occ;
-  
+
+export default function Plan({occ, curr}) {
+  const numItems = occ;
+  const current = curr;
+
+
   const [items, setItems] = useState({});
   
     const loadItems = (day) => {
         setTimeout(() => {
+          
           //for (let i = -15; i < 85; i++) {
-            for (let j = numItems; j > 0; j--) {
+          for (let j = numItems; j > 0; j--) {
            // const time = (day.timestamp + i * 24 * 60 * 60 * 1000)*7;
             const dzis = today();
-            //const time = day.timestamp + (j * 24 * 60 * 60 * 1000)*7;
             const time = day.timestamp + (j * 24 * 60 * 60 * 1000)*7;
             const strTime = timeToString(time);
-            //const strTime = currentWei();
-            if (!items[strTime]) {
-              items[strTime] = [];
-                items[strTime].push({
-                  name:'Your weight should be ' + strTime + ', week #'+j+' ',
-                  height: Math.max(40, Math.floor(Math.random() * 150))
-                });
-            }
+            const we = current-j;
+              if (!items[strTime]) {
+                items[strTime] = [];
+                  items[strTime].push({
+                    name: 'Your weight should be ' + we + ',  week # '+j+' ',
+                    height: Math.max(40, Math.floor(Math.random() * 150))
+                  });
+              }console.log(we);
           }
           const newItems = {};
           Object.keys(items).forEach(key => {
@@ -49,8 +49,6 @@ export default function Plan({occ}) {
           //setItems(items?items:newItems);
           setItems(newItems);
         }, 1000);
-        //console.log('occur='+ current);
-        console.log('hi');
       };
       
     

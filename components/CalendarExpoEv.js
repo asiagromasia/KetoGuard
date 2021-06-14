@@ -175,7 +175,7 @@ export default function CalendarExpoEv({ route, navigation }) {
           <Text style={styles.wlcm}>Here is your plan:</Text>
         </View>
         <View style={{flex: 1}}>
-        <Plan occ = {occurrenceNb} />
+        <Plan occ = {occurrenceNb} curr={current} />
         </View>
         <View style={styles.container2}>
             <Text style={styles.wlcm}>Add it to your phone calendar:</Text>            
