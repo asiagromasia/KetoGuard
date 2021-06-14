@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { StyleSheet, View, Text, Button, Platform, Alert,TouchableOpacity,FlatList } from 'react-native';
 import * as Calendar from 'expo-calendar';
 import * as Permissions from 'expo-permissions';
@@ -128,6 +128,7 @@ export default function CalendarExpoEv({ route, navigation }) {
   const { current } = route.params;
   const { goal } = route.params;
   const occurrenceNb = current - goal;
+  
 
     useEffect(() => {
       (async () => {
@@ -174,7 +175,7 @@ export default function CalendarExpoEv({ route, navigation }) {
           <Text style={styles.wlcm}>Here is your plan:</Text>
         </View>
         <View style={{flex: 1}}>
-        <Plan />
+        <Plan occ = {occurrenceNb} />
         </View>
         <View style={styles.container2}>
             <Text style={styles.wlcm}>Add it to your phone calendar:</Text>            

@@ -19,13 +19,13 @@ const today = () => {
 const currentWei= ()=>{
   return 150;
 }
-export default function Plan() {
+export default function Plan({occ}) {
+ const numItems = occ;
   
   const [items, setItems] = useState({});
   
     const loadItems = (day) => {
         setTimeout(() => {
-          const numItems = 5;
           //for (let i = -15; i < 85; i++) {
             for (let j = numItems; j > 0; j--) {
            // const time = (day.timestamp + i * 24 * 60 * 60 * 1000)*7;
@@ -37,8 +37,8 @@ export default function Plan() {
             if (!items[strTime]) {
               items[strTime] = [];
                 items[strTime].push({
-                  name: dzis+ " "+ day.timestamp + ' Your weight should be ' + strTime + ', week #'+j,
-                  height: Math.max(50, Math.floor(Math.random() * 150))
+                  name:'Your weight should be ' + strTime + ', week #'+j+' ',
+                  height: Math.max(40, Math.floor(Math.random() * 150))
                 });
             }
           }
@@ -49,7 +49,8 @@ export default function Plan() {
           //setItems(items?items:newItems);
           setItems(newItems);
         }, 1000);
-        
+        //console.log('occur='+ current);
+        console.log('hi');
       };
       
     
@@ -86,6 +87,7 @@ export default function Plan() {
 
 }
 
+//<Text>data from parent is:{datafromParent}</Text>
 //**** following are changes needed in node_modules  *****
 
 // onVisibleMonthsChange = months => {

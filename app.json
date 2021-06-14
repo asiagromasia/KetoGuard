@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/ketoIcon.png",
     "splash": {
-      "backgroundColor": "#f5ce42",
+      "backgroundColor": "#ebdc34",
       "image": "./assets/ketoIcon.png",
       "resizeMode": "contain"
     },
