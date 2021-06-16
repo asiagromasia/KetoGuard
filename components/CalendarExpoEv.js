@@ -9,34 +9,35 @@ import Plan from './Plan';
 const finishDate = '2021-08-26T16:00.00.000Z';
 
 //details about event
-const details = {
-    title: 'Keto check',
-    // startDate: '2021-05-26T16:00.00.000Z',
-    // endDate: Calendar.DayOfTheWeek.Thursday,
-    startDate: new Date(),
-    endDate: new Date(),  
-    notes:'today your weight should be:',
-    location: 'location',
-    accessLevel: Calendar.EventAccessLevel.PRIVATE,
-    recurrenceRule: {
-        // daysOfTheWeek:2,
-        frequency: Calendar.Frequency.WEEKLY,
-        interval: 1,
-        ///endDate: finishDate(),
-        //occurrence: occurrenceNb,
-        occurrence: 5
-    },
-    timeZone: Localization.timezone,
-    endTimeZone: Localization.timezone
+// const details = {
+//     title: 'Keto',
+//     // startDate: '2021-05-26T16:00.00.000Z',
+//     // endDate: Calendar.DayOfTheWeek.Thursday,
+//     startDate: new Date(),
+//     endDate: new Date(),  
+//     notes:'Today your weight should be:',
+//     location: 'location',
+//     accessLevel: Calendar.EventAccessLevel.PRIVATE,
+//     recurrenceRule: {
+//         // daysOfTheWeek:2,
+//         frequency: Calendar.Frequency.WEEKLY,
+//         interval: 1,
+//         ///endDate: finishDate(),
+//       //occurrence: occNb,
+//       occurrence: occNb
+//         //occurrence: 2
+//     },
+//     timeZone: Localization.timezone,
+//     endTimeZone: Localization.timezone
     
-  }
+//   }
 const evR = {
   // daysOfTheWeek:2,
   frequency: Calendar.Frequency.WEEKLY,
   interval: 1,
   ///endDate: finishDate(),
   
-  occurrence: 5
+  occurrence: 4
 }
   
 //Gets an array of calendars (objects) with details about the different calendars 
@@ -54,7 +55,7 @@ async function getDefaultCalendarId() {
     
     const defaultCalendars = calendars.filter(each => each.source.name === 'Default');
     return defaultCalendars[0].id;
-  }
+}
 
 //output agenda1
 async function agenda1(){
@@ -75,7 +76,15 @@ return plan;
 // }
 
 //creates new calendar and adds new event in it - if visible it shows events in default calendar 
-async function createCalendar() {
+//async function createCalendar(occurrenceNb) {
+ // try {
+const createCalendar = async (occurrenceNb) =>{
+  try {
+  console.log("in create Cal + occurenceNb="+ occurrenceNb)
+  
+  const occNb = occurrenceNb;
+  console.log("in create Cal + occNb="+ occNb)
+  
   const defaultCalendarSource =
     Platform.OS === 'ios'
       ? await getDefaultCalendarSource()
@@ -97,30 +106,56 @@ async function createCalendar() {
   });
   
     // creates new event- promise
-    const newEvent = await Calendar.createEventAsync(newCalendarID, details)
+    const newEvent = await Calendar.createEventAsync(newCalendarID, {
+      title: 'Keto',
+      // startDate: '2021-05-26T16:00.00.000Z',
+      // endDate: Calendar.DayOfTheWeek.Thursday,
+      startDate: new Date(),
+      endDate: new Date(),  
+      notes:'Today your weight should be:',
+      location: 'location',
+      accessLevel: Calendar.EventAccessLevel.PRIVATE,
+      recurrenceRule: {
+          // daysOfTheWeek:2,
+          frequency: Calendar.Frequency.WEEKLY,
+          interval: 1,
+          occurrence: occNb
+          
+      },
+      timeZone: Localization.timezone,
+      endTimeZone: Localization.timezone
+      
+    })
+      
                 .then( event => {
                     console.log('success',event);
+                    console.log();
+                    console.log(occNb);
+                    console.log(occurrenceNb);
                     Alert.alert('Created newEvent #' + event);
                     })
                     
                 .catch( error => {
                     console.log('failure',error);
                     });
+                  
     const ev = await Calendar.getEventAsync(event, evR)
     .then( event => {
-      console.log(ev);
+      console.log(event);
       console.log('success ev',event);
       
       Alert.alert('Created print #' + event);
       })
       
-  .catch( error => {
-      console.log('failure ev',error);
-      });
-     
-      console.log(ev);                  
-  console.log(`Your new calendar ID before event is: ${newCalendarID}`);
-  
+    .catch( error => {
+        console.log('failure ev',error);
+        });
+      
+    console.log(ev);                  
+    console.log(`Your new calendar ID before event is: ${newCalendarID}`);
+  } catch (error) {
+    console.error('Create event error ', error)
+  }
 }
 
 
@@ -139,14 +174,14 @@ export default function CalendarExpoEv({ route, navigation }) {
             const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
               //console.log(calendars);
               let result = await Calendar.createEventAsync(calendars[0].id, {
-                title: 'my new event from effect',
+                title: 'My new event from effect',
                 startDate: new Date(),
                 endDate: new Date(),
-                notes:'today your weight should be:',
+                notes:'weight should be:',
                 recurrenceRule: {
                   frequency: Calendar.Frequency.WEEKLY,
                   interval: 1,
-                  occurrence: occurrenceNb, //works in Android
+                  occurrence: occurrenceNb, 
               },
               });
               const ev = await Calendar.getEventAsync(result,evR);
@@ -154,6 +189,7 @@ export default function CalendarExpoEv({ route, navigation }) {
               console.log(result);
               //Alert.alert('Created event #' + result); 
               console.log({agenda1});
+              console.log(agenda1);
               
           }
         } catch (error) {
@@ -162,9 +198,6 @@ export default function CalendarExpoEv({ route, navigation }) {
       })();
     }, []);
 
-
-    console.log(current);
-    console.log(goal);
     //i=Calendar.EVENT.id;
     return (
         <>
@@ -181,7 +214,7 @@ export default function CalendarExpoEv({ route, navigation }) {
             <Text style={styles.wlcm}>Add it to your phone calendar:</Text>            
         </View>        
         <View style={styles.b}>
-          <TouchableOpacity style={styles.button} onPress={createCalendar}>
+          <TouchableOpacity style={styles.button} onPress={() => createCalendar(occurrenceNb)}>
                   <Text style={styles.text}>Create a new calendar</Text>
           </TouchableOpacity>
         </View>

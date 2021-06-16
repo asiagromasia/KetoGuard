@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import _ from 'lodash';
-import {View, Stylesheet,SafeAreView,TouchableOpacity,Text} from 'react-native';
+import {View, StyleSheet, SafeAreView, TouchableOpacity, Text} from 'react-native';
 import {Agenda} from 'react-native-calendars';
 import { Avatar, Card } from 'react-native-paper';
 import {onVisibleMonthsChange,chooseDay} from 'react-native-calendars'
@@ -37,10 +37,10 @@ export default function Plan({occ, curr}) {
               if (!items[strTime]) {
                 items[strTime] = [];
                   items[strTime].push({
-                    name: 'Your weight should be ' + we + ',  week # '+j+' ',
+                    name:'Your weight should be ' + we + ', week # '+j+' ',
                     height: Math.max(40, Math.floor(Math.random() * 150))
                   });
-              }console.log(we);
+              };
           }
           const newItems = {};
           Object.keys(items).forEach(key => {
@@ -59,7 +59,7 @@ export default function Plan({occ, curr}) {
             <Card>
                 <Card.Content>
                 <View style={{flexDirection: 'row',justifyContent:'space-between',alignItems:'center'}}>
-                        <Text>{item.name}</Text>
+                        <Text style={styles.nam}>{item.name}</Text>
                         <Avatar.Image source={ require("../assets/ketoIcon.png")} />
                     </View>
                 </Card.Content>
@@ -83,7 +83,20 @@ export default function Plan({occ, curr}) {
         </View>
     );
 
-}
+};
+
+const styles = StyleSheet.create({
+  ag:{
+    flex: 1,
+  },
+  nam:{
+    color: '#888',
+    fontSize: 16,
+    fontWeight: '700',
+    //marginHorizontal: 1
+    //marginBottom: 10
+  }
+});
 
 //<Text>data from parent is:{datafromParent}</Text>
 //**** following are changes needed in node_modules  *****
