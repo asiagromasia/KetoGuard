@@ -6,9 +6,9 @@
     "orientation": "portrait",
     "icon": "./assets/ketoIcon.png",
     "splash": {
-      "image": "./assets/splashK.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ebdc34",
+      "image": "./assets/ketoIcon.png",
+      "resizeMode": "contain"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

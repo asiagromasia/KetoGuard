@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc0be581-f0c8-412f-934e-796acc954b4c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/components/CalendarExpo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/CalendarExpoEv.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CalendarExpoEv.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/CurrentWeight.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Input.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Input.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/WeightChoice.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/WeightChoice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Welcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Welcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Plan.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Plan.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,10 +15,11 @@
     <session id="1774505360">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
     </session>
@@ -31,17 +28,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="128" />
-    <option name="y" value="25" />
+    <option name="x" value="133" />
+    <option name="y" value="179" />
     <option name="width" value="1440" />
-    <option name="height" value="821" />
+    <option name="height" value="804" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -53,6 +49,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -87,7 +84,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="290" y="25" width="1440" height="821" extended-state="0" />
+    <frame x="133" y="179" width="1440" height="804" extended-state="1" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.32980973" />
@@ -99,7 +96,7 @@
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="TODO" order="1" />
       <window_info anchor="bottom" id="Terminal" order="2" />
-      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" visible="true" />
+      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" visible="true" weight="0.33089313" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="right" id="Theme Preview" order="1" />
       <window_info anchor="right" id="Palette&#9;" order="2" />
